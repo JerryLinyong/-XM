@@ -6,7 +6,7 @@
       <li :style="{'color': colorTwo}" @click="component='form-two';colorOne='black';colorTwo='red';colorThree='black'">评价</li>
       <li :style="{'color': colorThree}" @click="component='form-three';colorOne='black';colorTwo='black';colorThree='red'">商家</li>
     </ul>
-    <component :is="component" class='main'  :data='data' @price='changePrice' :isShow='isShow' :ratings='data.ratings'></component>
+    <component :is="component" class='main'  :data='data' @price='changePrice' @closeCar='closeCar' :isShow='isShow' :ratings='data.ratings'></component>
     <v-footer :price = price :buyNum = num @showCar='showCar'></v-footer>
     <div class="moredetail" v-if="show == 1" @click="show=false">
       <h1 class='detailInfo'>IF YOU WANT TO KNOW MORE</h1>
@@ -64,6 +64,8 @@ export default {
     changePrice (getPrice, getNum) {
       this.price = getPrice
       this.num = getNum
+    },
+    closeCar () {
       this.isShow = false
     },
     showCar () {

@@ -35,21 +35,19 @@
         <span>购物车</span>
         <span class='clearCar' @click='clearCar()'>清空</span>
       </div>
-    <ul>
-      <li class="shopcarlist" v-for="(value,key, index) in buyCount" :key='index' v-if='value'>
-        <span class='goodsName'>{{key}}</span>
-        <div class='shopcarInfo'>
-        <span class='shopcarPrice'>￥{{price[key]}}</span>
-        <span class='iconfont icon-iconless shopcarMin' @click="minusOne(foodType.name),minPrice(foodType.price)"><span></span></span>
-        <span>{{value}}</span>
-        <span class='iconfont icon-jiahao shopcarAdd' @click="addOne(foodType.name),addPrice(foodType.price)"></span>
-        </div>
-      </li>
-    </ul>
+      <ul>
+        <li class="shopcarlist" v-for="(value,key, index) in buyCount" :key='index' v-if='value'>
+          <span class='goodsName'>{{key}}</span>
+          <div class='shopcarInfo'>
+          <span class='shopcarPrice'>￥{{price[key]}}</span>
+          <span class='iconfont icon-iconless shopcarMin' @click="minusOne(key),minPrice(price[key])"><span></span></span>
+          <span>{{value}}</span>
+          <span class='iconfont icon-jiahao shopcarAdd' @click="addOne(key),addPrice(price[key])"></span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-
-
 </template>
 
 <script>
@@ -112,7 +110,7 @@ export default {
       }
     },
     closeCar () {
-      this.$emit('price', this.Count, this.num)
+      this.$emit('closeCar')
     }
   },
   computed: {
